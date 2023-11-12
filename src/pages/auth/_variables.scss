@@ -1,0 +1,19 @@
+// _variables.scss
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+
+$primary-bg-color: #fff;
+$secondary-bg-color: #f0f0f0;
+$primary-text-color: #444;
+$secondary-text-color: #333;
+$placeholder-text-color: #aaa;
+$accent-color: #5995fd;
+$accent-hover-color: #4d84e2;
+$border-color: #333;
+
+@mixin transition($properties) {
+  -webkit-transition: $properties;
+  -moz-transition: $properties;
+  -o-transition: $properties;
+  transition: $properties;
+}

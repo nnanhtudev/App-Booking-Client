@@ -1,0 +1,49 @@
+@import '../variables';
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  height: 200px;
+  margin-top: -100px;
+  width: 400px;
+  margin-left: -200px;
+  .register-body{
+    .input-field , .form-control:focus{
+      border-radius: 45px;
+    }
+    .input-field{
+      display: flex;
+      align-items: center;
+      border: var(--bs-border-width) solid #00357F;
+      input {
+          background: none;
+          outline: none;
+          border: none;
+          line-height: 1;
+          font-weight: 600;
+          font-size: 1.1rem;
+          color: $primary-text-color;
+          &::placeholder {
+            color: $primary-text-color;
+            font-weight: 500;
+          }
+        }
+      .icon {
+          margin: 1rem;
+          text-align: center;
+          line-height: 55px;
+          color: $primary-text-color;
+          transform: transition(all 0.5s);
+          font-size: 1.1rem;
+        }
+    } 
+    .form-control:focus{
+      box-shadow: 0 0 0 0.1rem #00357F;
+    }
+  }
+}
