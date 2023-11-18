@@ -1,11 +1,11 @@
-import axios from 'axios';
+import axios from '../custom/axios';
 
 const handleRegister = async (email, password) => {
-  return axios.post('http://localhost:5000/api/v1/register', { email, password })
+  return axios.post('/v1/register', { email, password })
 }
 
 const handleLogin = async (email, password) => {
-  return axios.post('http://localhost:5000/api/v1/login', { email, password })
+  return axios.post('/v1/login', { email, password })
 }
 
 export { handleRegister, handleLogin }
