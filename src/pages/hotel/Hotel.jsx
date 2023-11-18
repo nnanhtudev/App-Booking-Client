@@ -4,21 +4,16 @@ import Header from "../../components/header/Header";
 import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircleArrowLeft,
-  faCircleArrowRight,
-  faCircleXmark,
-  faLocationDot,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
 import { handleGetHotelById } from "../../services/apiHotelServices";
 import { useParams } from "react-router-dom";
 
 const Hotel = () => {
-  const { id } = useParams()
+  const { id } = useParams();
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
-  const [hotelId, setHotelId] = useState([])
+  const [hotelId, setHotelId] = useState([]);
   const photos = [
     {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707778.jpg?k=56ba0babbcbbfeb3d3e911728831dcbc390ed2cb16c51d88159f82bf751d04c6&o=&hp=1",
@@ -39,7 +34,7 @@ const Hotel = () => {
       src: "https://cf.bstatic.com/xdata/images/hotel/max1280x900/261707389.jpg?k=52156673f9eb6d5d99d3eed9386491a0465ce6f3b995f005ac71abc192dd5827&o=&hp=1",
     },
   ];
-  const [defaultPhoto, setDefaultPhoto] = useState(photos)
+  const [defaultPhoto, setDefaultPhoto] = useState(photos);
 
   const handleOpen = (i) => {
     setSlideNumber(i);
@@ -55,51 +50,38 @@ const Hotel = () => {
       newSlideNumber = slideNumber === 5 ? 0 : slideNumber + 1;
     }
 
-    setSlideNumber(newSlideNumber)
+    setSlideNumber(newSlideNumber);
   };
 
-
   const handleShowHotelById = async () => {
-    const res = await handleGetHotelById(id)
+    const res = await handleGetHotelById(id);
     if (res && res.EC === 0) {
-      setHotelId(res.DT)
+      setHotelId(res.DT);
       if (res.DT && res.DT.photos.length > 0) {
         const updatePhotos = res.DT.photos.map((photo) => ({
-          src: photo
-        }))
-        setDefaultPhoto(updatePhotos)
+          src: photo,
+        }));
+        setDefaultPhoto(updatePhotos);
       }
     }
-  }
+  };
   useEffect(() => {
-    console.log(hotelId)
-    handleShowHotelById()
-  }, [])
+    console.log(hotelId);
+    handleShowHotelById();
+  }, []);
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <Header type="list" />
       <div className="hotelContainer">
         {open && (
           <div className="slider">
-            <FontAwesomeIcon
-              icon={faCircleXmark}
-              className="close"
-              onClick={() => setOpen(false)}
-            />
-            <FontAwesomeIcon
-              icon={faCircleArrowLeft}
-              className="arrow"
-              onClick={() => handleMove("l")}
-            />
+            <FontAwesomeIcon icon={faCircleXmark} className="close" onClick={() => setOpen(false)} />
+            <FontAwesomeIcon icon={faCircleArrowLeft} className="arrow" onClick={() => handleMove("l")} />
             <div className="sliderWrapper">
               <img src={defaultPhoto[slideNumber].src} alt="" className="sliderImg" />
             </div>
-            <FontAwesomeIcon
-              icon={faCircleArrowRight}
-              className="arrow"
-              onClick={() => handleMove("r")}
-            />
+            <FontAwesomeIcon icon={faCircleArrowRight} className="arrow" onClick={() => handleMove("r")} />
           </div>
         )}
         <div className="hotelWrapper">
@@ -109,37 +91,25 @@ const Hotel = () => {
             <FontAwesomeIcon icon={faLocationDot} />
             <span>{hotelId.address}</span>
           </div>
-          <span className="hotelDistance">
-            Excellent location – {hotelId.distance}m from center
-          </span>
+          <span className="hotelDistance">Excellent location – {hotelId.distance}m from center</span>
           <span className="hotelPriceHighlight">
             Book a stay over ${hotelId.cheapestPrice} at this property and get a free airport taxi
           </span>
           <div className="hotelImages">
             {defaultPhoto.map((photo, i) => (
               <div className="hotelImgWrapper" key={i}>
-                <img
-                  onClick={() => handleOpen(i)}
-                  src={photo.src}
-                  alt=""
-                  className="hotelImg"
-                />
+                <img onClick={() => handleOpen(i)} src={photo.src} alt="" className="hotelImg" />
               </div>
             ))}
           </div>
           <div className="hotelDetails">
             <div className="hotelDetailsTexts">
               <h1 className="hotelTitle">{hotelId.title}</h1>
-              <p className="hotelDesc">
-                {hotelId.desc}
-              </p>
+              <p className="hotelDesc">{hotelId.desc}</p>
             </div>
             <div className="hotelDetailsPrice">
               <h1>Perfect for a 9-night stay!</h1>
-              <span>
-                Located in the real heart of Krakow, this property has an
-                excellent location score of 9.8!
-              </span>
+              <span>Located in the real heart of Krakow, this property has an excellent location score of 9.8!</span>
               <h2>
                 <b>${hotelId.cheapestPrice}</b> (9 nights)
               </h2>

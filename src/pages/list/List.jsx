@@ -18,7 +18,7 @@ const List = () => {
 
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <Header type="list" />
       <div className="listContainer">
         <div className="listWrapper">
@@ -30,16 +30,12 @@ const List = () => {
             </div>
             <div className="lsItem">
               <label>Check-in Date</label>
-              <span onClick={() => setOpenDate(!openDate)}>{`${format(
-                date[0].startDate,
+              <span onClick={() => setOpenDate(!openDate)}>{`${format(date[0].startDate, "MM/dd/yyyy")} to ${format(
+                date[0].endDate,
                 "MM/dd/yyyy"
-              )} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</span>
+              )}`}</span>
               {openDate && (
-                <DateRange
-                  onChange={(item) => setDate([item.selection])}
-                  minDate={new Date()}
-                  ranges={date}
-                />
+                <DateRange onChange={(item) => setDate([item.selection])} minDate={new Date()} ranges={date} />
               )}
             </div>
             <div className="lsItem">
@@ -59,30 +55,15 @@ const List = () => {
                 </div>
                 <div className="lsOptionItem">
                   <span className="lsOptionText">Adult</span>
-                  <input
-                    type="number"
-                    min={1}
-                    className="lsOptionInput"
-                    placeholder={options.adult}
-                  />
+                  <input type="number" min={1} className="lsOptionInput" placeholder={options.adult} />
                 </div>
                 <div className="lsOptionItem">
                   <span className="lsOptionText">Children</span>
-                  <input
-                    type="number"
-                    min={0}
-                    className="lsOptionInput"
-                    placeholder={options.children}
-                  />
+                  <input type="number" min={0} className="lsOptionInput" placeholder={options.children} />
                 </div>
                 <div className="lsOptionItem">
                   <span className="lsOptionText">Room</span>
-                  <input
-                    type="number"
-                    min={1}
-                    className="lsOptionInput"
-                    placeholder={options.room}
-                  />
+                  <input type="number" min={1} className="lsOptionInput" placeholder={options.room} />
                 </div>
               </div>
             </div>
@@ -95,7 +76,7 @@ const List = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
