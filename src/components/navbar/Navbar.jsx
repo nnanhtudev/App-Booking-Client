@@ -1,19 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 import "./navbar.css";
 import { toast } from "react-toastify";
+import { UserContext } from "../../context/UserContext";
+import { useContext } from "react";
 
 const Navbar = () => {
-  // ... rest of the component
-  const jwtCookie = document.cookie.split("; ").find((cookie) => cookie.startsWith("jwt"));
-  const isLoggedIn = jwtCookie ? true : false;
-  const navigate = useNavigate();
-  const handleLogout = () => {
-    // Thực hiện các bước logout, có thể làm xóa cookie, reset context, vv.
-    // Ví dụ: clear cookie và chuyển hướng đến trang login
-    document.cookie = "jwt=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    toast.error("Logged out");
-    navigate("/login");
-  };
+  const { user } = useContext(UserContext);
   return (
     <div className="navbar">
       <div className="navContainer">
@@ -21,15 +13,13 @@ const Navbar = () => {
           <span>Booking Website</span>
         </Link>
         <div className="navItems">
-          {isLoggedIn === true ? (
+          {user && user.isAuthenticated === true ? (
             <>
-              {/* <span>{onEmail ? onEmail : "User"}</span> */}
-              <Link to="/transactions">
+              <span>{user.account.email}</span>
+              <Link to="/transaction">
                 <button className="navButton">Transactions</button>
               </Link>
-              <button className="navButton" onClick={handleLogout}>
-                Logout
-              </button>
+              <button className="navButton">Logout</button>
             </>
           ) : (
             <>

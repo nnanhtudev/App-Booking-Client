@@ -1,12 +1,14 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
-import { useState, createContext, useContext } from "react";
+import { useContext, useState } from "react";
 import { toast } from "react-toastify";
 import validateEmail from "../../../utils/validEmail";
 import { handleLogin } from "../../../services/apiUserServices";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../../context/UserContext";
 
 const Login = () => {
+  const { loginContext } = useContext(UserContext);
   let navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -54,9 +56,17 @@ const Login = () => {
     if (checkEmail === true && checkPassword === true) {
       let response = await handleLogin(email, password);
       if (response && +response.EC === 0) {
+        let email = response.DT.email;
+        let isAdmin = response.DT.isAdmin;
+        let token = response.DT.access_token;
+        let data = {
+          isAuthenticated: true,
+          token,
+          account: { email, isAdmin },
+        };
         toast.success("Login successful");
+        loginContext(data);
         navigate("/");
-        window.location.reload();
       } else {
         toast.error(response.EM);
       }

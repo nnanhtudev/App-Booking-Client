@@ -9,6 +9,8 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Login from "./pages/auth/login/Login";
 import Navbar from "./components/navbar/Navbar";
+import PrivateRoutes from "./routes/PrivateRoutes";
+import Transaction from "./components/transaction/Transaction";
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +21,14 @@ function App() {
         <Route path="/hotels/:id" element={<Hotel />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route
+          path="/transaction"
+          element={
+            <PrivateRoutes>
+              <Transaction />
+            </PrivateRoutes>
+          }
+        />
       </Routes>
       <ToastContainer
         position="bottom-center"
