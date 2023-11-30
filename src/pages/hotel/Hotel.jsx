@@ -4,11 +4,14 @@ import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot } from "@fortawesome/free-solid-svg-icons";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { handleGetHotelById } from "../../services/apiHotelServices";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
 
 const Hotel = () => {
+  const { setLoading } = useContext(UserContext);
+
   const { id } = useParams();
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
@@ -63,9 +66,10 @@ const Hotel = () => {
         setDefaultPhoto(updatePhotos);
       }
     }
+    console.log(hotelId);
+    setLoading(false);
   };
   useEffect(() => {
-    console.log(hotelId);
     handleShowHotelById();
   }, []);
   return (
@@ -84,7 +88,10 @@ const Hotel = () => {
           </div>
         )}
         <div className="hotelWrapper">
-          <button className="bookNow">Reserve or Book Now!</button>
+          <NavLink to={`/hotels-booking/${hotelId._id}`}>
+            <button className="bookNow">Reserve or Book Now!</button>
+          </NavLink>
+
           <h1 className="hotelTitle">{hotelId.title}</h1>
           <div className="hotelAddress">
             <FontAwesomeIcon icon={faLocationDot} />

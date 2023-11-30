@@ -1,11 +1,19 @@
 import axios from "../custom/axios";
 
-const handleRegister = async (email, password) => {
+const handleRegister = (email, password) => {
   return axios.post("/v1/register", { email, password });
 };
 
-const handleLogin = async (email, password) => {
+const handleLogin = (email, password) => {
   return axios.post("/v1/login", { email, password });
 };
 
-export { handleRegister, handleLogin };
+const getAccount = () => {
+  return axios.get("/v1/account");
+};
+
+const handleLogoutUser = () => {
+  return axios.post("/v1/logout");
+};
+
+export { handleRegister, handleLogin, getAccount, handleLogoutUser };

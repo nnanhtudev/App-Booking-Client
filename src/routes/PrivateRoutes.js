@@ -1,21 +1,23 @@
-import { Route, useHistory } from "react-router-dom";
-import { useContext, useEffect } from "react";
+import { Route, Navigate, useLocation } from "react-router-dom";
+import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import { Navigate } from "react-router-dom";
-const PrivateRoutes = (props) => {
+import Transaction from "../components/transaction/Transaction";
+import HotelBooking from "../components/hotel-booking/hotel-booking";
+import { toast } from "react-toastify";
+
+const PrivateRoutes = () => {
   const { user } = useContext(UserContext);
+  const location = useLocation();
+
   if (user && user.isAuthenticated === true) {
-    return (
-      <>
-        <Route path={props.path} element={props.element} />
-      </>
-    );
+    if (location.pathname === "/transaction") {
+      return <Transaction />;
+    } else {
+      return <HotelBooking />;
+    }
   } else {
-    return (
-      <>
-        <Navigate to="/login"></Navigate>
-      </>
-    );
+    toast.error("Please Login");
+    return <Navigate to="/login" />;
   }
 };
 

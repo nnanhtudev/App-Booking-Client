@@ -20,6 +20,6 @@ const handleGetHotelsHomePage = async (city, type, rating) => {
 
 const handleGetHotelById = async (id) => {
   return axios.get(`/v1/hotel/${id}`);
-}
+};
 
-export { handleGetHotelsHomePage, handleGetHotelById }
+export { handleGetHotelsHomePage, handleGetHotelById };

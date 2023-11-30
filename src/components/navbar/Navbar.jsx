@@ -3,9 +3,22 @@ import "./navbar.css";
 import { toast } from "react-toastify";
 import { UserContext } from "../../context/UserContext";
 import { useContext } from "react";
+import { handleLogoutUser } from "../../services/apiUserServices";
 
 const Navbar = () => {
-  const { user } = useContext(UserContext);
+  const { user, logoutContext } = useContext(UserContext);
+  const navigate = useNavigate();
+  const handleLogout = async () => {
+    let data = await handleLogoutUser();
+    logoutContext();
+    localStorage.removeItem("jwt");
+    if (data && +data.EC === 0) {
+      toast.success(data.EM);
+      navigate("/login");
+    } else {
+      toast.error(data.EM);
+    }
+  };
   return (
     <div className="navbar">
       <div className="navContainer">
@@ -16,10 +29,17 @@ const Navbar = () => {
           {user && user.isAuthenticated === true ? (
             <>
               <span>{user.account.email}</span>
+              {user.account.isAdmin === true && (
+                <a href="http://localhost:4002/login">
+                  <button className="navButton">Admin</button>
+                </a>
+              )}
               <Link to="/transaction">
                 <button className="navButton">Transactions</button>
               </Link>
-              <button className="navButton">Logout</button>
+              <button className="navButton" onClick={() => handleLogout()}>
+                Logout
+              </button>
             </>
           ) : (
             <>

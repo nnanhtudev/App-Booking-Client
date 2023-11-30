@@ -1,0 +1,26 @@
+.calendar {
+  display: flex;
+  flex-direction: column;
+  /* align-content: space-around; */
+  align-items: center;
+  .button {
+    display: flex;
+    padding: 5px;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    gap: 2px;
+    border: 1px solid #ebf3ff;
+    .btn {
+      box-shadow: 0px 0px 5px rgb(115, 111, 111);
+    }
+  }
+  .btn.check-active {
+    background-color: #0b5ed7;
+    color: white;
+  }
+}
+
+.react-calendar {
+  border: none !important;
+}

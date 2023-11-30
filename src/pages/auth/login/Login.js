@@ -64,8 +64,9 @@ const Login = () => {
           token,
           account: { email, isAdmin },
         };
-        toast.success("Login successful");
+        localStorage.setItem("jwt", token);
         loginContext(data);
+        toast.success("Login successful");
         navigate("/");
       } else {
         toast.error(response.EM);

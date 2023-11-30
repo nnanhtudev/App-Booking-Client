@@ -1,0 +1,67 @@
+.transaction-container {
+  width: 80%;
+  margin: 20px auto;
+}
+
+.transaction-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+
+  th,
+  td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+
+    transition: transform 0.3s ease; // Thêm hiệu ứng chuyển động
+  }
+
+  th {
+    background-color: #f5f5f5;
+  }
+
+  tbody tr:hover {
+    background-color: #f5f5f5;
+  }
+
+  .status-column {
+    display: inline-block;
+    width: 100px; // Đặt chiều rộng tùy thuộc vào nhu cầu
+  }
+
+  .status-span {
+    display: inline-block;
+    padding: 6px 10px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    transition: border-color 0.3s ease, background-color 0.3s ease, transform 0.3s ease; // Thêm hiệu ứng chuyển động
+    margin-right: 5px; // Khoảng trắng giữa các span
+    cursor: pointer;
+    max-width: 85px;
+    &:hover {
+      transform: scale(1.1); // Tăng kích thước khi di chuột vào
+    }
+
+    &.status-booked {
+      color: red;
+      border-color: red;
+      background-color: rgba(255, 0, 0, 0.1);
+    }
+
+    &.status-checkin {
+      color: green;
+      border-color: green;
+      background-color: rgba(0, 255, 0, 0.1);
+    }
+
+    &.status-checkout {
+      color: gray;
+      border-color: gray;
+      background-color: rgba(128, 128, 128, 0.1);
+    }
+  }
+}

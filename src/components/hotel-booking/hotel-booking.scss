@@ -1,0 +1,203 @@
+// Transaction.scss
+
+.container-hotel-booking {
+  font-family: "Arial", sans-serif;
+  color: #333;
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 auto; // Đưa container vào giữa màn hình
+  position: relative;
+
+  // Add some spacing around the container
+  padding: 20px;
+  transition: transform 0.3s ease; // Add a subtle transform animation
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.02); // Add a scaling effect on hover
+  }
+}
+
+.hotel-booking-header {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease; // Add a subtle box shadow transition
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.hotel-booking-header-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.description {
+  font-size: 14px;
+  color: #555;
+  margin-top: 5px;
+}
+
+.hotel-booking-header-book-now {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .price {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+
+  .button {
+    margin-top: 10px;
+
+    button {
+      width: 100%;
+      padding: 10px;
+      border-radius: 4px;
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease; // Add a smooth transition
+
+      &:hover {
+        background-color: #0056b3;
+      }
+    }
+  }
+}
+
+.hotel-booking-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  transition: box-shadow 0.3s ease; // Add a subtle box shadow transition
+
+  &:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+}
+
+.dates {
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .calendar {
+    // Add styles for the calendar component if needed
+  }
+}
+
+.info {
+  h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .info-content {
+    // Add styles for the reservation info content
+  }
+
+  .reserve-info {
+    // Add styles for the reservation info section
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s ease; // Add a smooth transition
+
+    &:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 8px rgba(0, 123, 255, 0.5); // Add a box shadow on focus
+    }
+
+    &.is-invalid {
+      border-color: #dc3545;
+    }
+  }
+}
+
+.hotel-booking-room {
+  // Add styles for the room selection section
+}
+
+.room {
+  .tile {
+    h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      transition: transform 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+.hotel-booking-footer {
+  margin-top: 20px;
+
+  .title {
+    h1 {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+  }
+
+  .option-submit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .option-payment {
+      width: 48%;
+
+      select,
+      button {
+        width: 100%;
+        padding: 10px;
+        border-radius: 4px;
+        transition: background-color 0.3s ease; // Add a smooth transition
+      }
+
+      select {
+        margin-bottom: 10px;
+      }
+
+      button {
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #0056b3;
+        }
+      }
+    }
+  }
+}
